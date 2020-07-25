@@ -15,7 +15,7 @@ public class LoginServlet extends GServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         PrintWriter out = response.getWriter();
-        USERS.put("fqx","123");
+
 
       if(USERS.containsKey(username))
       {
