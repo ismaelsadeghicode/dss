@@ -24,7 +24,7 @@ public class RegisterServlet extends GServlet {
             if(password.equals(password_confirm))
             {
                 USERS.put(username,password);
-                response.sendRedirect("http://localhost:8080/loginRegister_war_exploded/login.html");
+                response.sendRedirect("login.html");
             }else{
                 writer.println("Password Not Match");
 

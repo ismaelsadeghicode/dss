@@ -21,12 +21,12 @@ public class LoginServlet extends GServlet {
       {
           if(USERS.get(username).equals(password))
           {
-              response.sendRedirect("http://localhost:8080/loginRegister_war_exploded/welcome.html");
+              response.sendRedirect("welcome.html");
           }else{
-              response.sendRedirect("http://localhost:8080/loginRegister_war_exploded/error.html");
+              response.sendRedirect("error.html");
           }
       }else{
-          response.sendRedirect("http://localhost:8080/loginRegister_war_exploded/error.html");
+          response.sendRedirect("error.html");
       }
 
 
