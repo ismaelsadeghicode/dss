@@ -13,7 +13,7 @@ public class Utility {
         File file = new File(address);
         File[] listOfFiles = file.listFiles();
         List<String> filenames = new ArrayList<>();
-        Stack<String> classnames = new Stack<>();
+        List<String> classnames = new ArrayList<>();
         for(int i=0; i<listOfFiles.length;i++){
             if (listOfFiles[i].isFile()){
             String a =listOfFiles[i].getName();
@@ -28,7 +28,7 @@ public class Utility {
             }
             s = addressRefiner(string) + "."+s;
             System.out.println(s);
-           classnames.push(s);
+           classnames.add(s);
         }
         tableGenerators.getEntities(classnames);
     }

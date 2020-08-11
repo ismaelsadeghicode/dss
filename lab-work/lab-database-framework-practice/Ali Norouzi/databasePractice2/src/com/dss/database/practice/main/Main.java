@@ -10,13 +10,13 @@ public class Main {
     private static Users users = new Users();
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException, IllegalAccessException {
-       /* Utility utility = new Utility();
-        utility.fileNames("src/com/dss/database/practice/model");*/
-        CRUD crud= new CRUD();
-        users.setUsername("ALInorouzi");
-        users.setPassword("Norouzi79");
+        Utility utility = new Utility();
+        utility.fileNames("src/com/dss/database/practice/model");
+        /*CRUD crud= new CRUD();
+        users.setUsername("ALInor2ouzi");
+        users.setPassword("Nor3ouzi79");
         users.setPhoneNumber(910921579);
         users.setId(0);
-        crud.update(users);
+        crud.update(users);*/
     }
 }
