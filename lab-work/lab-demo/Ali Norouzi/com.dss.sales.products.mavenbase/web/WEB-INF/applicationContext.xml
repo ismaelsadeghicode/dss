@@ -12,7 +12,7 @@
     </bean>
     <context:component-scan base-package="com.dss"/>
     <mvc:annotation-driven/>
-    <mvc:resources mapping="/resources/**" location="/resources/" ca/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:default-servlet-handler/>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
