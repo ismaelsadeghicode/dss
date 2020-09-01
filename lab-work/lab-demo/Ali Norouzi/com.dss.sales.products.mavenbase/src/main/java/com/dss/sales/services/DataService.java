@@ -32,7 +32,7 @@ public class DataService {
     @Transactional
     public List<Users> findAllUsers(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Users");
+        Query query = session.createQuery("from Users order by id desc ");
         List<Users> list = query.list();
         session.flush();
         return list;
