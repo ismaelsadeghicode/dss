@@ -39,8 +39,8 @@
 <form method="post" action="/cashincrease">
         <h1>Cash increase functionality</h1>
         <h2>Please enter required information</h2>
-        <label for="inputEmail"  class="sr-only">Email address</label>
-        <input type="email" name="email" id="inputEmail" placeholder="Email address" required autofocus>
+        <label class="sr-only">Username</label>
+        <input type="text" name="username" placeholder="Username" required autofocus>
         <label for="inputAmount">Amount</label>
         <input type="amount" name="amount" id="inputAmount" placeholder="amount" required>
         <span class="btn">
@@ -50,8 +50,8 @@
 <form method="post" action="/addOneUser">
         <h1>Adding user functionality</h1>
         <h2>Please enter required information</h2>
-        <label for="inputEmail"  class="sr-only">Email address</label>
-        <input type="email" name="email"  placeholder="Email address" required autofocus>
+        <label class="sr-only">Username</label>
+        <input type="text" name="username" placeholder="Username" required autofocus>
         <label for="inputPassword">Password</label>
         <input type="password" name="password" id="inputPassword" placeholder="password" required>
         <span class="btn">
@@ -61,8 +61,8 @@
 <form method="post" action="/showOneUser">
     <h1>Showing custom user functionality</h1>
     <h2>Please enter required information</h2>
-    <label for="inputEmail"  class="sr-only">Email address</label>
-    <input type="email" name="email"  placeholder="Email address" required autofocus>
+    <label class="sr-only">Username</label>
+    <input type="text" name="username" placeholder="Username" required autofocus>
     <span class="btn">
              <button type="submit">Submit</button>
         </span>
@@ -72,12 +72,10 @@
     <h2>Please enter required information</h2>
     <label for="inputID"  class="sr-only">ID</label>
     <input type="number" name="id" id="inputID" placeholder="ID" required autofocus>
-    <label for="inputEmail"  class="sr-only">Email address</label>
-    <input type="email" name="email"  placeholder="Email address" required autofocus>
+    <label class="sr-only">Username</label>
+    <input type="text" name="username" placeholder="Username" required autofocus>
     <label for="inputPassword">Password</label>
     <input type="password" name="password"  placeholder="password" required>
-    <label for="inputUsername"  class="sr-only">Username</label>
-    <input type="text" name="username" id="inputUsername" placeholder="Username" required autofocus>
     <label for="inputPhoneNumber"  class="sr-only">Phone Number</label>
     <input type="number" name="phone_number" id="inputPhoneNumber" placeholder="Phone Number" required autofocus>
     <label for="inputCash"  class="sr-only">Wallet cash</label>

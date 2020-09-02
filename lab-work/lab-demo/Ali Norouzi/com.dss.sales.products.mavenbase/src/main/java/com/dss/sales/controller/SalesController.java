@@ -2,6 +2,7 @@ package com.dss.sales.controller;
 
 import com.dss.sales.model.Products;
 import com.dss.sales.model.Users;
+import com.dss.sales.services.DataService;
 import com.dss.sales.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ public class SalesController {
     @Autowired
     private ProductsService service;
     @Autowired
-    private DataController controllerOfData;
+    private DataService controllerOfData;
 
     @RequestMapping("/")
     public String homePage(){
@@ -45,7 +46,7 @@ public class SalesController {
     }
 
     @PostMapping("/signIn")
-    public String SignIn(@RequestParam("email")String username, @RequestParam("password") String password){
+    public String SignIn(@RequestParam("username")String username, @RequestParam("password") String password){
         String log = controllerOfData.findAndCheckUser(username,password);
         if(log.equals("Welcome!")){
             return "signinanswerT";
@@ -62,7 +63,7 @@ public class SalesController {
         return "signUp";
     }
     @PostMapping("/signUp")
-    public String signup(@RequestParam("email")String username, @RequestParam("password") String password){
+    public String signup(@RequestParam("username")String username, @RequestParam("password") String password){
         String check = controllerOfData.checkAndCreateUser(username,password);
         if (check.equals("Welcome")) {
             return "signupanswerT";
@@ -77,8 +78,8 @@ public class SalesController {
         return "admin";
     }
     @PostMapping("/cashincrease")
-    public ModelAndView cashIncreased(@RequestParam("amount")long amount, @RequestParam("email")String email){
-        Users userTemp = controllerOfData.findUserByEmail(email);
+    public ModelAndView cashIncreased(@RequestParam("amount")long amount, @RequestParam("username")String username){
+        Users userTemp = controllerOfData.findUserByUsername(username);
         controllerOfData.increaseWalletCash(amount,userTemp);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("cashIncreased");
@@ -95,8 +96,8 @@ public class SalesController {
         return mv;
     }
     @PostMapping("/addOneUser")
-    public String addOneUser(@RequestParam("email")String email,@RequestParam("password")String password){
-        String log = controllerOfData.checkAndCreateUser(email,password);
+    public String addOneUser(@RequestParam("username")String username,@RequestParam("password")String password){
+        String log = controllerOfData.checkAndCreateUser(username,password);
         if (log.equals("Welcome")) {
             return "addOneUserAnswerT";
         }else{
@@ -104,23 +105,25 @@ public class SalesController {
         }
     }
     @PostMapping("/showOneUser")
-    public ModelAndView showOneUser(@RequestParam("email")String email){
+    public ModelAndView showOneUser(@RequestParam("username")String username){
         ModelAndView mv=new ModelAndView();
-        Users user = controllerOfData.findUserByEmail(email);
+        Users user = controllerOfData.findUserByUsername(username);
         mv.setViewName("showOneUser");
         mv.addObject("user",user);
         return mv;
     }
     @PostMapping("/editOneUser") //This method is connected to "showOneUser" method
-    public ModelAndView editOneUser(@RequestParam("id")long id,@RequestParam("email")String email,
-                                    @RequestParam("password")String password, @RequestParam("username")String username,
-                                    @RequestParam("phone_number")String phoneNumber,@RequestParam("wallet")long cash,
-                                    @RequestParam("isMale")boolean isMale, @RequestParam("isFemale")boolean isFemale){
+    public ModelAndView editOneUser(@RequestParam("id")long id,
+                                    @RequestParam("password")String password,
+                                    @RequestParam("username")String username,
+                                    @RequestParam("phone_number")String phoneNumber,
+                                    @RequestParam("wallet")long cash,
+                                    @RequestParam("isMale")boolean isMale,
+                                    @RequestParam("isFemale")boolean isFemale){
         ModelAndView mv = new ModelAndView();
         Users currentUser = controllerOfData.findUserById((int)id);
         Users updatedUser = new Users();
         updatedUser = currentUser;
-        updatedUser.setEmailAdress(email);
         updatedUser.setPassword(password);
         updatedUser.setUsername(username);
         updatedUser.setWallet(cash);
