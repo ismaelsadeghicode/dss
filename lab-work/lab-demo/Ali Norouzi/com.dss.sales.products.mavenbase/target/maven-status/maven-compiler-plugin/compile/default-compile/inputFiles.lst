@@ -1,0 +1,12 @@
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/controller/DataController.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/services/Database.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/model/Users.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/model/Group.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/configuration/ConfigServlet.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/services/ProductsService.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/controller/SalesController.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/services/CRUDDB.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/model/Products.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/configuration/ConfigWeb.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/services/CRUD.java
+/home/ali/IdeaProjects/com.dss.sales.products.mavenbase/src/main/java/com/dss/sales/services/UsersDatabase.java
