@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework:spring-webmvc:5.2.5.RELEASE'
+    implementation 'javax.servlet:jstl:1.2'
+    implementation 'org.springframework:spring-orm:5.2.7.RELEASE'
+    implementation 'org.hibernate:hibernate-core:5.4.10.Final'
+    implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+    testCompile 'com.h2database:h2:1.4.197'
+    implementation 'org.postgresql:postgresql:42.2.5'
+    compile 'org.apache.logging.log4j:log4j-core:2.12.1'
+    //    compile group: 'com.oracle', name: 'ojdbc6', version: '12.1.0.1-atlassian-hosted'
+
+    compileOnly 'javax:javaee-api:8.0.1'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
