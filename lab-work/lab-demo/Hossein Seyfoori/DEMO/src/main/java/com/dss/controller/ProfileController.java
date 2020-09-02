@@ -41,9 +41,11 @@ public class ProfileController {
 
         UserT user = userService.getUserById(id, phone_number, email, first_name, last_name);
 
-
         userDao.updateUser(user);
-        return new ModelAndView("redirect:/dashboard");
+
+        String path = "redirect:/profile/"+id+"/edit";
+
+        return new ModelAndView(path);
 
     }
 

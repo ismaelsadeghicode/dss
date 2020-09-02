@@ -2,24 +2,27 @@ package com.dss.controller;
 
 
 import com.dss.dao.UserDao;
-import com.dss.model.RecaptchaResponse;
+
 import com.dss.model.UserT;
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.*;
 
 import java.util.List;
 import java.util.logging.Logger;
 
-@Controller
-public class LoginController {
+@Component
+public class  LoginController extends BaseController   {
 
 
     private String message;
@@ -30,16 +33,25 @@ public class LoginController {
     @Autowired
     private RestTemplate restTemplate;
 
+//    @Autowired
+//    private UserRepository userRepository;
+
     Logger logger =  Logger.getLogger(String.valueOf(LoginController.class));
-    @GetMapping("/")
-    public ModelAndView loginShow()
+    @GetMapping()
+    public ModelAndView loginShow(HttpSession session)
     {
+        if(session.getAttribute("user_id") != null)
+        {
+             return new ModelAndView("redirect:/dashboard");
+        }
+
         return new ModelAndView("login","message",message);
     }
     @RequestMapping("/loginCheck")
     public ModelAndView loginCheck(@RequestParam("email") String email,
                                    @RequestParam("password")String password,
-                                   @RequestParam("g-recaptcha-response")String recaptchaResponse
+                                   @RequestParam("g-recaptcha-response")String recaptchaResponse,
+                                   HttpSession session
                                    )
     {
 
@@ -61,6 +73,9 @@ public class LoginController {
         {
             if(password.equals(userT.getPassword()))
             {
+
+                session.setAttribute("user_id",userT.getId());
+
                 mv.setViewName("redirect:/dashboard");
 
             }else{
@@ -82,15 +97,53 @@ public class LoginController {
     }
 
     @RequestMapping("/dashboard")
-    public  ModelAndView dashboard()
+    public  ModelAndView dashboard(HttpSession session)
     {
+
+
+        if(session.getAttribute("user_id") == null)
+        {
+            return new ModelAndView("login","message","لطفا لاگین کنید");
+        }
+
+        int user_id = 0;
+
+        if(session.getAttribute("user_id") !=null)
+        {
+             user_id = (int) session.getAttribute("user_id");
+        }
+
+
         ModelAndView mv = new ModelAndView("dashboard");
 
-        List<UserT> allUsers = userDao.findAllUsers();
+        List<UserT> all = userDao.findAllUsers();
+        UserT userLogin = userDao.getUserById(user_id);
+//      List<UserT> all = userRepository.findAll();
 
-        mv.addObject("users",allUsers);
+        mv.addObject("users",all);
+        mv.addObject("user",userLogin);
 
         return mv;
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session)
+    {
+        session.invalidate();
+        return "redirect:/login";
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login(HttpSession session)
+    {
+
+        if(session.getAttribute("user_id") != null)
+        {
+            return new ModelAndView("redirect:/dashboard");
+        }
+
+        session.invalidate();
+        return new ModelAndView("login");
     }
 
 

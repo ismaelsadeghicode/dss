@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class RegisterController {
@@ -30,6 +33,8 @@ public class RegisterController {
         return "register";
     }
 
+
+
     @RequestMapping("/registerCheck")
     public ModelAndView registerCheck(
             @RequestParam("username")String username,
@@ -44,33 +49,39 @@ public class RegisterController {
         UserT userByUsername = userDao.getUserByUsername(username);
         ModelAndView mv = new ModelAndView();
 
-           if(!username.equals("") && !email.equals(""))
+
+           if(!username.equals("") )
            {
-               if(userByUsername == null && userByEmail == null  )
-               {
-                   if(password.equals(password_confirm))
-                   {
-                       UserT userT1 = new UserT();
-                       userT1.setUsername(username);
-                       userT1.setEmail(email);
-                       userT1.setFirst_name(first_name);
-                       userT1.setLast_name(last_name);
-                       userT1.setPassword(password);
+              if(!email.equals("")){
+                  if(userByUsername == null && userByEmail == null  )
+                  {
+                      if(password.equals(password_confirm))
+                      {
+                          UserT userT1 = new UserT();
+                          userT1.setUsername(username);
+                          userT1.setEmail(email);
+                          userT1.setFirst_name(first_name);
+                          userT1.setLast_name(last_name);
+                          userT1.setPassword(password);
 
-                       userDao.insertUser(userT1);
-                       mv.setViewName("redirect:/");
-                   }else{
-                       mv.addObject("message","اخ اخ دقت کن پسورد شبیه به هم وارد نکردی  فدای چشمای آبیت.");
-                       mv.setViewName("404");
+                          userDao.insertUser(userT1);
+                          mv.setViewName("redirect:/");
+                      }else{
+                          mv.addObject("message","اخ اخ دقت کن پسورد شبیه به هم وارد نکردی  فدای چشمای آبیت.");
+                          mv.setViewName("register");
 
-                   }
-               }else{
-                   mv.addObject("message","نام کاربری یا ایمیل قبلا استفاده شده عشقم لطفا یکی دیگه انتخاب کن");
-                   mv.setViewName("404");
-               }
+                      }
+                  }else{
+                      mv.addObject("used","نام کاربری یا ایمیل قبلا استفاده شده عشقم لطفا یکی دیگه انتخاب کن");
+                      mv.setViewName("register");
+                  }
+              }else{
+                  mv.addObject("exist","ایمیل  وارد نمایید.");
+                  mv.setViewName("register");
+              }
            }else{
-               mv.addObject("message","نام کاربری یا ایمیل را وارد نمایید.");
-               mv.setViewName("404");
+               mv.addObject("exist","نام کاربری  وارد نمایید.");
+               mv.setViewName("register");
            }
 
 

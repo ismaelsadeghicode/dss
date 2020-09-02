@@ -13,4 +13,7 @@ public interface UserDao {
     void updateUser(UserT tbluser);
     void deteleUser(UserT tbluser);
 
+
+
+
 }

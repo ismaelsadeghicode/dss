@@ -28,6 +28,7 @@ public class UserDaoImpl implements UserDao {
 
         Session currentSession = sessionFactory.getCurrentSession();
         Query query = currentSession.createQuery(" from UserT order by id desc ");
+
         currentSession.flush();
         List<UserT> tblusers = query.list();
 
