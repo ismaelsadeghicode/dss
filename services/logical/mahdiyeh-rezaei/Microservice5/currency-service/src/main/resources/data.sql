@@ -1,0 +1,2 @@
+insert into CURRENCY_VALUE (id, CURRENCY_MULTIPLY ,CURRENCY_FROM ,CURRENCY_TO ) values (1, 12000, 'btc', 'usd');
+insert into CURRENCY_VALUE (id, CURRENCY_MULTIPLY ,CURRENCY_FROM ,CURRENCY_TO ) values (2, 400, 'eth', 'usd');
